@@ -1,5 +1,15 @@
-from app import app
+from app import Blueprint, render_template, current_app
 
-@app.route('/')
+# Initializing blueprints
+main_blueprint = Blueprint('main', __name__)
+
+# Home route
+@main_blueprint.route('/')
 def home():
-    return "Home Page"
+    mongo = current_app.mongo
+    return render_template('home.html')
+
+@main_blueprint.route('/dashboard')
+def dashboard():
+    mongo = current_app.mongo
+    return render_template('dashboard.html')

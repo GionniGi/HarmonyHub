@@ -11,8 +11,8 @@ def create_app():
     client = MongoClient(app.config["MONGO_URI"])
     app.mongo = client.HarmonyHub
 
-
-    # Importing blueprints
-    from app.routes.views import main_blueprint
+    # Importazione delle blueprint delle route
+    from .routes.views import main_blueprint
+    app.register_blueprint(main_blueprint)
 
     return app

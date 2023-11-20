@@ -10,7 +10,7 @@ def home():
     mongo = current_app.mongo
     return render_template('home.html')
 
-@main_blueprint.route('/dashboard')
+@main_blueprint.route('/dashboard/')
 def dashboard():
     mongo = current_app.mongo
     return render_template('dashboard.html')

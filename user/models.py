@@ -1,11 +1,12 @@
 from flask import Flask, jsonify
-from utils import *
+from utils import validatePassword, validateEmail, validateUsername
+from app import db
 
 # Initialize User class
 class User:
     
     # signup function
-    def signup(self, username, email, password, confirmPassword, firstName, lastName, birthDate, description, extroversion, friendliness, emotionalStability, openness, conscientiousness, ipAddress)
+    def signup(self)
         # Check if password and confirmPassword match
         if password != confirmPassword:
             return jsonify({'message' : 'Passwords do not match'})

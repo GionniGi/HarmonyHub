@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Signup Form</h2>
+    <form id="signup-form" method="POST" action="/signup/">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" placeholder="Username" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Email" required><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Password" required><br>
+
+        <label for="confirm_password">Confirm Password:</label><br>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required><br>
+        
+        <label for="first_name">First Name:</label><br>
+        <input type="text" id="first_name" name="first_name" placeholder="First Name" required><br>
+
+        <label for="last_name">Last Name:</label><br>
+        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required><br>
+
+        <label for="birth_date">Birth Date:</label><br>
+        <input type="date" id="birth_date" name="birth_date" required><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" placeholder="Describe yourself"></textarea><br>
+
+        <label for="extroversion">Extroversion Rating:</label><br>
+        <input type="number" id="extroversion" name="extroversion" min="1" max="5" placeholder="Extroversion Rating"><br>
+
+        <label for="friendliness">Friendliness Rating:</label><br>
+        <input type="number" id="friendliness" name="friendliness" min="1" max="5" placeholder="Friendliness Rating"><br>
+
+        <label for="emotional_stability">Emotional Stability Rating:</label><br>
+        <input type="number" id="emotional_stability" name="emotional_stability" min="1" max="5" placeholder="Emotional Stability Rating"><br>
+
+        <label for="openness">Openness Rating:</label><br>
+        <input type="number" id="openness" name="openness" min="1" max="5" placeholder="Openness Rating"><br>
+
+        <button type="submit">Signup</button>
+    </form>
+    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+{% endblock %}
+

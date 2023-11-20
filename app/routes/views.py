@@ -1,4 +1,5 @@
-from app import Blueprint, render_template, current_app
+from flask import Blueprint, render_template, current_app
+
 
 # Initializing blueprints
 main_blueprint = Blueprint('main', __name__)

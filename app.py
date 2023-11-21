@@ -4,7 +4,7 @@ import pymongo
 
 # Initialize the app
 app = Flask(__name__)
-app.register_blueprint(user_blueprint)
+app.register_blueprint(user_blueprint, url_prefix='/user')
 
 
 # Connect to MongoDB

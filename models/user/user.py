@@ -9,40 +9,33 @@ class User:
     def signup(self, username, email, password, confirmPassword, firstName, lastName, birthDate, description, extroversion, friendliness, emotionalStability, openness, conscientiousness, ipAddress):
         
         # Import userCollection from app.py
-        from app import userCollection
-
-        errors = []
+        from app import users
         
         # Check if password and confirmPassword match
         if password != confirmPassword:
-            errors.append('Passwords do not match')
+            return jsonify({"message": "Passwords do not match."})
         
         # Check if password is valid
         if not validatePassword(password):
-            errors.append('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number')
+            return jsonify({"message": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter and one number."})
+        # Hash password
+        hashedPassword = hashPassword(password)
         
         # Check if email is valid
         if not validateEmail(email):
-            errors.append('Invalid email')
+            return jsonify({"message": "Email is not valid."})
         
         # Check if username is valid
         if not validateUsername(username):
-            errors.append('Username must be at least 3 characters long')
+            return jsonify({"message": "Username must be at least 3 characters long."})    
         
         # Check if username is already taken
-        if userCollection.find_one({'username' : username}):
-            errors.append('Username already taken')
+        if users.find_one({'username' : username}):
+            return jsonify({"message": "Username already taken."})
         
         # Check if email is already taken
-        if userCollection.find_one({'email' : email}):
-            errors.append('Email already taken')
-
-        # Check if there are any errors
-        if len(errors) > 0:
-            return jsonify({'errors' : errors})
-        
-        # Hash password
-        hashedPassword = hashPassword(password)
+        if users.find_one({'email' : email}):
+            return jsonify({"message": "Email already taken."})
 
         # Create user object
         userObject = {
@@ -65,5 +58,5 @@ class User:
         }
 
         # Insert user object into database
-        userCollection.insert_one(userObject)
-        return jsonify({'message' : 'User created successfully'})
+        users.insert_one(userObject)
+        return jsonify({"message": "User created successfully."})

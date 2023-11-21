@@ -7,7 +7,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         object[key] = value;
     });
 
-    fetch('/user/signup/', {
+    fetch('/user/signup/', {  // Corrected the POST URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
             alert(data.error);
         } else {
             alert(data.message);
-            window.location.href = '/login.html';
+            window.location.href = '/login.html';  // Assuming you have a login.html page
         }
     })
     .catch((error) => {

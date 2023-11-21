@@ -2,19 +2,15 @@ from flask import request, Blueprint, jsonify
 from utils import getIp
 from models.user.user import User
 
-# Initialize user blueprint
 user_blueprint = Blueprint('user', __name__)
 
-# Define routes
-# Signup route
 @user_blueprint.route('/signup/', methods=['GET', 'POST'])
 def signup():
     try:
         data = request.json
-        ip_address=getIp(request)
+        ip_address = getIp(request)
 
-        response = User.signup(
-            User(),
+        response = User().signup(
             data.get('username', ''), 
             data.get('email', ''), 
             data.get('password', ''), 

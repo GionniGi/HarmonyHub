@@ -1,6 +1,9 @@
 document.getElementById('signup-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    //Reset error messages
+    document.getElementById('error-display').innerHTML = '';
+
     // Raccogliere i valori dai campi del form
     var username = document.getElementById('username').value;
     var email = document.getElementById('email').value;
@@ -37,7 +40,8 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     fetch('/user/signup/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache'
         },
         body: JSON.stringify(signupData)
     })

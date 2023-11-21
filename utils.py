@@ -1,7 +1,5 @@
-import datetime
 import re
 import bcrypt
-from flask_mail import Mail, Message
 
 # Function to validate password
 def validatePassword(password):

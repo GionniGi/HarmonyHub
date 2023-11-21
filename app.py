@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from models.user.routes import user_blueprint
 import pymongo
 

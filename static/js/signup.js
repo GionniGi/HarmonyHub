@@ -2,9 +2,6 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     event.preventDefault();
     console.log('Form submitted');
 
-    //Reset error messages
-    document.getElementById('error-display').innerHTML = '';
-
     // Raccogliere i valori dai campi del form
     var username = document.getElementById('username').value;
     var email = document.getElementById('email').value;

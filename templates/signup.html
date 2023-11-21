@@ -3,7 +3,6 @@
 {% block content %}
     <h2>Signup Form</h2>
     <form id="signup-form" method="POST" action="/user/signup/">
-        <div id="error-display"></div>
 
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username" placeholder="Username" required><br>
@@ -46,6 +45,6 @@
 
         <button type="submit">Signup</button>
     </form>
-    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+    <script src="/static/js/signup.js"></script>
 {% endblock %}
 

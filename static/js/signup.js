@@ -14,6 +14,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     var friendliness = document.getElementById('friendliness').value;
     var emotionalStability = document.getElementById('emotional_stability').value;
     var openness = document.getElementById('openness').value;
+    var conscientiousness = document.getElementById('conscientiousness').value;
 
     // Creare l'oggetto con i dati da inviare
     var signupData = {
@@ -28,11 +29,12 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         extroversion: extroversion,
         friendliness: friendliness,
         emotionalStability: emotionalStability,
-        openness: openness
+        openness: openness,
+        conscientiousness: conscientiousness
     };
 
     // Invia i dati al server tramite una richiesta POST
-    fetch('/signup/', {
+    fetch('/user/signup/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

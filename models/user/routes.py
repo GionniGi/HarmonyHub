@@ -3,8 +3,9 @@ from app import app
 from utils import getIp
 from models.user.user import User
 
-@app.route('/signup', methods=['POST'])
+@app.route('/user/signup/', methods=['POST'])
 def signup():
+    render_template('signup.html')
     # Add a signup route
     try:
         # Get request data

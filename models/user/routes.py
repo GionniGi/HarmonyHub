@@ -1,4 +1,4 @@
-from flask import render_template, request, Blueprint, redirect
+from flask import request, Blueprint, jsonify
 from utils import getIp
 from models.user.user import User
 
@@ -14,6 +14,7 @@ def signup():
         ip_address=getIp(request)
 
         response = User.signup(
+            User(),
             data.get('username', ''), 
             data.get('email', ''), 
             data.get('password', ''), 

@@ -7,7 +7,7 @@ user_blueprint = Blueprint('user', __name__)
 
 # Define routes
 # Signup route
-@user_blueprint.route('/user/signup/', methods=['GET', 'POST'])
+@user_blueprint.route('/signup/', methods=['GET', 'POST'])
 def signup():
     if request.method == 'GET':
         return render_template('signup.html')

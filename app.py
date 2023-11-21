@@ -4,13 +4,14 @@ import pymongo
 
 # Initialize the app
 app = Flask(__name__)
-app.register_blueprint(user_blueprint, url_prefix='/user')
+app.register_blueprint(user_blueprint)
 
 
 # Connect to MongoDB
 client = pymongo.MongoClient('mongodb://localhost:27017/')
+# Create database and collection
 db = client['HarmonyHub']
-userCollection = db['Utenti']
+users = db['Users']
 
 # Define routes
 # Add a home route

@@ -18,23 +18,23 @@ class User:
             errors.append('Passwords do not match')
         
         # Check if password is valid
-        elif not validatePassword(password):
+        if not validatePassword(password):
             errors.append('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number')
         
         # Check if email is valid
-        elif not validateEmail(email):
+        if not validateEmail(email):
             errors.append('Invalid email')
         
         # Check if username is valid
-        elif not validateUsername(username):
-            errors.append('Username must be at least 3 characters long and contain at least one letter and one number')
+        if not validateUsername(username):
+            errors.append('Username must be at least 3 characters long')
         
         # Check if username is already taken
         if userCollection.find_one({'username' : username}):
             errors.append('Username already taken')
         
         # Check if email is already taken
-        elif userCollection.find_one({'email' : email}):
+        if userCollection.find_one({'email' : email}):
             errors.append('Email already taken')
 
         # Check if there are any errors

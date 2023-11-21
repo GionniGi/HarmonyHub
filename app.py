@@ -22,11 +22,3 @@ def home():
 @app.route('/dashboard/')
 def dashboard():
     return render_template('dashboard.html')
-
-# Add a login route
-@app.route('/login/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        # Logic for handling login data goes here
-        pass
-    return render_template('login.html')

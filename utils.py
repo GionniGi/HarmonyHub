@@ -25,12 +25,6 @@ def validateEmail(email):
 def validateUsername(username):
     if len(username) < 3:
         return False
-    elif not any(char.isalpha() for char in username):
-        return False
-    elif not any(char.isdigit() for char in username):
-        return False
-    else:
-        return True
     
 # Function to hash password
 def hashPassword(password):

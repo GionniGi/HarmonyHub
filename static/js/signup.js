@@ -41,15 +41,19 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         },
         body: JSON.stringify(signupData)
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error('Network response was not ok.');
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
-        // Gestire qui la risposta positiva, come il reindirizzamento alla pagina di login o di conferma
+        if (data.errors) {
+            // Show the errors
+            console.error('Errors:', data.errors);
+            alert('Errori nella registrazione: ' + data.errors.join('\n'));
+        } else {
+            // Show success message
+            console.log('Success:', data);
+            alert('Registrazione avvenuta con successo!');
+            // Redirect to login page
+            window.location.href = '/user/login/';
+        }
     })
     .catch(error => console.error('Error:', error));
 });

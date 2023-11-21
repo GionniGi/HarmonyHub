@@ -30,6 +30,9 @@ def signup():
         conscientiousness = request.json['conscientiousness']
         ip_address = getIp(request)          
         user = User()
-        return user.signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, emotional_stability, openness, conscientiousness, ip_address), render_template('login.html')
+        response = user.signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, emotional_stability, openness, conscientiousness, ip_address)
+        if 'errors' in response.json:
+            return response
+        return render_template('login.html')
     except Exception as e:
         return str(e), 400

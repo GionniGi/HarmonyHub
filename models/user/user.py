@@ -1,6 +1,5 @@
 from flask import jsonify
 from utils import validatePassword, validateEmail, validateUsername, hashPassword
-from app import user
 import datetime
 
 # Initialize User class
@@ -8,6 +7,9 @@ class User:
     
     # signup function
     def signup(self, username, email, password, confirmPassword, firstName, lastName, birthDate, description, extroversion, friendliness, emotionalStability, openness, conscientiousness, ipAddress):
+        
+        # Import userCollection from app.py
+        from app import userCollection
         
         # Check if password and confirmPassword match
         if password != confirmPassword:
@@ -26,11 +28,11 @@ class User:
             return jsonify({'message' : 'Username must be at least 4 characters long.'})
         
         # Check if username is already taken
-        if user.find_one({'username' : username}):
+        if userCollection.find_one({'username' : username}):
             return jsonify({'message' : 'Username already taken'})
         
         # Check if email is already taken
-        elif user.find_one({'email' : email}):
+        elif userCollection.find_one({'email' : email}):
             return jsonify({'message' : 'Email already taken'})
         
         # Hash password
@@ -57,5 +59,5 @@ class User:
         }
 
         # Insert user object into database
-        user.insert_one(userObject)
+        userCollection.insert_one(userObject)
         return jsonify({'message' : 'User created successfully'})

@@ -10,7 +10,7 @@ app.register_blueprint(user_blueprint, url_prefix='/user')
 # Connect to MongoDB
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client['HarmonyHub']
-user = db['Utenti']
+userCollection = db['Utenti']
 
 # Define routes
 # Add a home route

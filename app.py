@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request
+from models.user.routes import user_blueprint
 import pymongo
 
 # Initialize the app
 app = Flask(__name__)
+app.register_blueprint(user_blueprint)
+
 
 # Connect to MongoDB
 client = pymongo.MongoClient('mongodb://localhost:27017/')

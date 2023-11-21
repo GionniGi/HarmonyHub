@@ -1,5 +1,4 @@
 from flask import render_template, request, Blueprint
-from app import app
 from utils import getIp
 from models.user.user import User
 
@@ -8,7 +7,7 @@ user_blueprint = Blueprint('user', __name__)
 
 # Define routes
 # Signup route
-@user_blueprint.route('/user/signup/', methods=['POST'])
+@user_blueprint.route('/signup/', methods=['POST'])
 def signup():
     render_template('signup.html')
     # Add a signup route

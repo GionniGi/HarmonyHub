@@ -15,7 +15,6 @@ def signup():
     if request.method == 'GET':
         return render_template('signup.html')
     try:
-        ip_address = get_ip(request)
         data = request.json
         if not data:
             return jsonify({'error': 'No data provided'}), 400

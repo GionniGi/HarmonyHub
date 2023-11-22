@@ -1,5 +1,5 @@
 from flask import request, Blueprint, jsonify, render_template
-from utils import get_ip
+from utils import get_ip, calculate_average
 from models.user.user import User
 
 user_blueprint = Blueprint('user', __name__)
@@ -30,11 +30,31 @@ def signup():
             data.get('last_name', ''),
             data.get('birth_date', ''),
             data.get('description', ''),
-            data.get('extroversion', 0),
-            data.get('friendliness', 0),
-            data.get('emotional_stability', 0),
-            data.get('openness', 0),
-            data.get('conscientiousness', 0),
+            calculate_average(
+                data.get('extroversion1', 0),
+                data.get('extroversion2', 0),
+                data.get('extroversion3', 0)
+                ),
+            calculate_average(
+                data.get('friendliness1', 0),
+                data.get('friendliness2', 0),
+                data.get('friendliness3', 0)
+                ),
+            calculate_average(
+                data.get('conscientiousness1', 0),
+                data.get('conscientiousness2', 0),
+                data.get('conscientiousness3', 0)
+                ),
+            calculate_average(
+                data.get('openess1', 0),
+                data.get('openess2', 0),
+                data.get('openess3', 0)
+                ),
+            calculate_average(
+                data.get('stability1', 0),
+                data.get('stability2', 0),
+                data.get('stability3', 0)
+                ),
             ip_address
         )
         return jsonify(response), 200

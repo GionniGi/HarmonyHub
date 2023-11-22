@@ -2,9 +2,9 @@
 This module provides utility functions for password validation, email validation,
 username validation, password hashing, password checking, and IP retrieval.
 """
-
 import re
 import bcrypt
+import math
 
 def validate_password(password):
     """
@@ -58,3 +58,13 @@ def get_ip(request):
     Retrieves the IP address from the request headers or remote address.
     """
     return request.headers.get('X-Forwarded-For', request.remote_addr)
+
+def calculate_average(*scores):
+    """
+    Calculates the average of a list of scores and rounds it up.
+    """
+    if not scores:
+        return 0
+    average_score = sum(scores) / len(scores)
+    return math.ceil(average_score)
+

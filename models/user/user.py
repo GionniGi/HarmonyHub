@@ -5,7 +5,7 @@ from utils import validate_email, validate_password, validate_username, hash_pas
 class User:
     
     # signup function
-    def signup(self, username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, emotional_stability, openness, conscientiousness, ip_address):
+    def signup(self, username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, conscientiousness, openness, emotional_stability, ip_address):
         
         # Import userCollection from app.py
         from app import users

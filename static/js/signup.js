@@ -25,7 +25,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
             alert(data.error);
         } else {
             alert(data.message);
-            window.location.href = '/login.html';  // Assuming you have a login.html page
+            window.location.href = '/user/login';  // Assuming you have a login.html page
         }
     })
     .catch((error) => {

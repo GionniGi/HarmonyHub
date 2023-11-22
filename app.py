@@ -24,3 +24,7 @@ def home():
 @app.route('/dashboard/')
 def dashboard():
     return render_template('dashboard.html')
+
+@app.route('/questionnaire/')
+def questionnaire():
+    return render_template('questionnaire.html')

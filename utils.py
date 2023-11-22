@@ -13,7 +13,7 @@ def validatePassword(password):
         return False
     else:
         return True
-    
+
 # Function to validate email
 def validateEmail(email):
     if len(email) > 7:
@@ -25,7 +25,8 @@ def validateEmail(email):
 def validateUsername(username):
     if len(username) < 3:
         return False
-    
+    return True  # Added missing return statement
+
 # Function to hash password
 def hashPassword(password):
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())

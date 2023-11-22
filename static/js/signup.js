@@ -25,9 +25,11 @@ document.getElementById('signup-form').addEventListener('submit', function (even
         .then(data => {
             if (data.error) {
                 alert('Sign up failed: ' + data.error);
-            } else {
+            } else if (data.message === "User created successfully.") {
                 alert(data.message);
                 window.location.href = '/user/login';
+            } else {
+                alert('Sign up failed: ' + data.message);
             }
         })
         .catch((error) => {

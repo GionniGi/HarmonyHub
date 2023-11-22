@@ -1,4 +1,4 @@
-Sei un programmatore Senior. Correggimi questo codice senza fornirmi spiegazioni. Non so quale sia l'errore quindi non chiedemelo. Analizza il codice, trova tutti i problemi e inviami il codice corretto. Io dovrò solo fare copia e incolla del codice che tu mi fornirai.
+Sei un programmatore Senior. Correggimi questo codice senza fornirmi spiegazioni. Non so quale sia l'errore quindi non chiedemelo. Analizza il codice, trova tutti i problemi e inviami il codice corretto. Io dovrò solo fare copia e incolla del codice che tu mi fornirai
 
 **1) app.py:**
 from flask import Flask, render_template

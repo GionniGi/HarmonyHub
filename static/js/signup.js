@@ -21,12 +21,7 @@ document.getElementById('signup-form').addEventListener('submit', function (even
         },
         body: JSON.stringify(object),
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to sign up');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             if (data.error) {
                 alert('Sign up failed: ' + data.error);
@@ -40,4 +35,3 @@ document.getElementById('signup-form').addEventListener('submit', function (even
             alert('An error occurred while signing up');
         });
 });
-  

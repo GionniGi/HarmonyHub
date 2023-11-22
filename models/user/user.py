@@ -1,6 +1,6 @@
-from flask import jsonify
-from utils import validatePassword, validateEmail, validateUsername, hashPassword
 import datetime
+from flask import jsonify
+from utils import validate_email, validate_password, validate_username, hash_password
 
 # Initialize User class
 class User:
@@ -16,17 +16,17 @@ class User:
             return jsonify({"message": "Passwords do not match."})
         
         # Check if password is valid
-        if not validatePassword(password):
+        if not validate_password(password):
             return jsonify({"message": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter and one number."})
         # Hash password
-        hashedPassword = hashPassword(password)
+        hashedPassword = hash_password(password)
         
         # Check if email is valid
-        if not validateEmail(email):
+        if not validate_email(email):
             return jsonify({"message": "Email is not valid."})
         
         # Check if username is valid
-        if not validateUsername(username):
+        if not validate_username(username):
             return jsonify({"message": "Username must be at least 3 characters long."})    
         
         # Check if username is already taken

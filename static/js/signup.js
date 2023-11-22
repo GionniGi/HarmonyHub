@@ -14,7 +14,7 @@ document.getElementById('signup-form').addEventListener('submit', function (even
         return;
     }
 
-    fetch('127.0.0.1:5000/user/signup/', {
+    fetch('/user/signup/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

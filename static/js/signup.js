@@ -1,5 +1,6 @@
 document.getElementById('signup-form').addEventListener('submit', function(event) {
     event.preventDefault();
+    console.log('Form submitted');
 
     //Reset error messages
     document.getElementById('error-display').innerHTML = '';
@@ -35,6 +36,8 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         openness: openness,
         conscientiousness: conscientiousness
     };
+
+    console.log('Sending data:', signupData);
 
     // Invia i dati al server tramite una richiesta POST
     fetch('/user/signup/', {

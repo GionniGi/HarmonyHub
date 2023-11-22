@@ -37,7 +37,7 @@ def signup():
             data.get('conscientiousness', 0),
             ip_address
         )
-        return jsonify({"message": response}), 200
+        return jsonify(response), 200
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     except KeyError as e:

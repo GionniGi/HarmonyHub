@@ -1,11 +1,13 @@
 import datetime
 from utils import validate_email, validate_password, validate_username, hash_password, get_ip, calculate_average
 from models.user import User
-from app import users
 from flask import request, jsonify
 
 # Validate signup data
 def validate_signup_data(username, email, password, confirm_password):
+
+    # Import users collection
+    from app import users
 
     # Check if all fields are filled
     if password != confirm_password:
@@ -26,6 +28,9 @@ def validate_signup_data(username, email, password, confirm_password):
 # Signup user
 def signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, conscientiousness, openness, emotional_stability, ip_address):
     
+    # Import users collection
+    from app import users
+
     # Validate data
     validate_signup_data(username, email, password, confirm_password)
 

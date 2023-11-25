@@ -18,13 +18,9 @@ users = db['Users']
 # Add a home route
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('view/templates/home.html')
 
 # Add a dashboard route
 @app.route('/dashboard/')
 def dashboard():
-    return render_template('dashboard.html')
-
-@app.route('/questionnaire/')
-def questionnaire():
-    return render_template('questionnaire.html')
+    return render_template('view/templates/dashboard.html')

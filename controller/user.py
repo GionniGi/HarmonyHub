@@ -1,7 +1,9 @@
 import datetime
+from utils import validate_email, validate_password, validate_username, hash_password, get_ip, calculate_average
 from models.user import User
 from app import users
-from utils import validate_email, validate_password, validate_username, hash_password
+from flask import request, jsonify
+
 
 def signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, conscientiousness, openness, emotional_stability, ip_address):
     # Validate input
@@ -27,3 +29,46 @@ def signup(username, email, password, confirm_password, first_name, last_name, b
     user_object['lastAccessDate'] = datetime.datetime.utcnow()
     users.insert_one(user_object)
     return {"message": "User created successfully."}
+
+def user_post():
+    data = request.json
+    if not data:
+            return jsonify({'error': 'No data provided'}), 400
+    ip_address = get_ip(request)
+    response = signup(data.get('username', ''),
+            data.get('email', ''),
+            data.get('password', ''),
+            data.get('confirm_password', ''),
+            data.get('first_name', ''),
+            data.get('last_name', ''),
+            data.get('birth_date', ''),
+            data.get('description', ''),
+            calculate_average(
+                data.get('extroversion1', 0),
+                data.get('extroversion2', 0),
+                data.get('extroversion3', 0)
+                ),
+            calculate_average(
+                data.get('friendliness1', 0),
+                data.get('friendliness2', 0),
+                data.get('friendliness3', 0)
+                ),
+            calculate_average(
+                data.get('conscientiousness1', 0),
+                data.get('conscientiousness2', 0),
+                data.get('conscientiousness3', 0)
+                ),
+            calculate_average(
+                data.get('openess1', 0),
+                data.get('openess2', 0),
+                data.get('openess3', 0)
+                ),
+            calculate_average(
+                data.get('stability1', 0),
+                data.get('stability2', 0),
+                data.get('stability3', 0)
+                ),
+            ip_address
+        )
+    return jsonify(response), 200
+

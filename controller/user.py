@@ -1,7 +1,7 @@
 import datetime
 from models.user import User
-from utils import validate_email, validate_password, validate_username, hash_password
 from app import users
+from utils import validate_email, validate_password, validate_username, hash_password
 
 def signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, conscientiousness, openness, emotional_stability, ip_address):
     # Validate input

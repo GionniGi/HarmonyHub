@@ -1,5 +1,5 @@
 from flask import request, Blueprint, jsonify, render_template
-from controllers.user import user_post
+from controllers.user import signup_post
 
 user_blueprint = Blueprint('user', __name__)
 

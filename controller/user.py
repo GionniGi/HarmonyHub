@@ -30,7 +30,7 @@ def signup(username, email, password, confirm_password, first_name, last_name, b
     users.insert_one(user_object)
     return {"message": "User created successfully."}
 
-def user_post():
+def signup_post():
     data = request.json
     if not data:
             return jsonify({'error': 'No data provided'}), 400

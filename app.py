@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from models.user.routes import user_blueprint
+from routes.user import user_blueprint
 import pymongo
 
 # Initialize the app

@@ -1,7 +1,7 @@
 import datetime
 from utils import validate_email, validate_password, validate_username, hash_password, get_ip, calculate_average
 from models.user import User
-from flask import request, jsonify
+from flask import request
 
 # Validate signup data
 def validate_signup_data(username, email, password, confirm_password):
@@ -40,13 +40,13 @@ def signup(username, email, password, confirm_password, first_name, last_name, b
     user_object['ipAddresses'] = [ip_address]
     user_object['lastAccessDate'] = datetime.datetime.utcnow()
     users.insert_one(user_object)
-    return {"message": "User created successfully."}
+    return ("User created successfully.")
 
 # Post method for signup
 def signup_post():
     data = request.json
     if not data:
-            return jsonify({'error': 'No data provided'}), 400
+            return ValueError('No data provided')
     ip_address = get_ip(request)
     response = signup(data.get('username', ''),
             data.get('email', ''),
@@ -83,4 +83,4 @@ def signup_post():
                 ),
             ip_address
         )
-    return jsonify(response), 200
+    return response

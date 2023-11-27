@@ -1,13 +1,14 @@
 import datetime
 from utils import validate_email, validate_password, validate_username, hash_password
-from app import db
 from models.user import User
 
-# Import users collection
-users = db['Users']
 
 # Validate signup data
 def validate_signup_data(username, email, password, confirm_password):
+
+    # Import users collection
+    from app import db
+    users = db['Users']
 
     # Check if username or email already exists
     if users.find_one({'username': username}):
@@ -27,6 +28,10 @@ def validate_signup_data(username, email, password, confirm_password):
 
 # Signup user
 def signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, conscientiousness, openness, emotional_stability, ip_address):
+
+    # Import users collection
+    from app import db
+    users = db['Users']
 
     # Validate data
     validate_signup_data(username, email, password, confirm_password)

@@ -3,7 +3,7 @@ from routes.user_routes import bp
 import pymongo
 
 # Initialize the app
-app = Flask(__name__, template_folder='view/templates')
+app = Flask(__name__, template_folder='view')
 
 # Register the user blueprint
 app.register_blueprint(bp, url_prefix='/user')
@@ -17,7 +17,7 @@ db = client['HarmonyHub']
 # Add a home route
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home/home.html')
 
 # Add a dashboard route
 @app.route('/dashboard/')

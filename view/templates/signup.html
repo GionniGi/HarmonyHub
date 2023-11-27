@@ -8,22 +8,22 @@
         <input type="text" id="username" name="username" placeholder="Username" required><br>
 
         <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" placeholder="Email" required><br>
+        <input type="email" id="email" name="email" placeholder="Email" ><br>
 
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" placeholder="Password" required><br>
+        <input type="password" id="password" name="password" placeholder="Password" ><br>
 
         <label for="confirm_password">Confirm Password:</label><br>
-        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required><br>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password"><br>
         
         <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name" placeholder="First Name" required><br>
+        <input type="text" id="first_name" name="first_name" placeholder="First Name"><br>
 
         <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required><br>
+        <input type="text" id="last_name" name="last_name" placeholder="Last Name"><br>
 
         <label for="birth_date">Birth Date:</label><br>
-        <input type="date" id="birth_date" name="birth_date" required><br>
+        <input type="date" id="birth_date" name="birth_date"><br>
 
         <label for="description">Description:</label><br>
         <textarea id="description" name="description" placeholder="Describe yourself"></textarea><br>
@@ -34,7 +34,7 @@
                 <label for="question-1">Do you love sparking up new conversations at parties like you're hosting an invisible talk show?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="extroversion1" name="extroversion-1" value="{{ i }}" required>
+                        <input type="radio" id="extroversion1" name="extroversion-1" value="{{ i }}">
                         <label for="q1-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -43,7 +43,7 @@
                 <label for="question-2">When meeting strangers, do you get a buzz of excitement thinking about the new stories you'll hear and share?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="extroversion2" name="extroversion-2" value="{{ i }}" required>
+                        <input type="radio" id="extroversion2" name="extroversion-2" value="{{ i }}">
                         <label for="q2-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -52,7 +52,7 @@
                 <label for="question-3">In a lively social scene, do you feel like you're in your element, soaking up the energy around you?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="extroversion3" name="extroversion-3" value="{{ i }}" required>
+                        <input type="radio" id="extroversion3" name="extroversion-3" value="{{ i }}">
                         <label for="q3-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -65,7 +65,7 @@
                 <label for="question-1">Are you the first to jump in and help a friend in need, offering a shoulder or a helping hand?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="friendliness1" name="friendliness-1" value="{{ i }}" required>
+                        <input type="radio" id="friendliness1" name="friendliness-1" value="{{ i }}">
                         <label for="q1-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -74,7 +74,7 @@
                 <label for="question-2">Do you find yourself genuinely curious about your friends` lives, asking about their day with keen interest?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="friendliness2" name="friendliness-2" value="{{ i }}" required>
+                        <input type="radio" id="friendliness2" name="friendliness-2" value="{{ i }}">
                         <label for="q2-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -83,7 +83,7 @@
                 <label for="question-3">Do you easily share your experiences with others, creating connections through your stories and listening ear?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="friendliness3" name="friendliness-3" value="{{ i }}" required>
+                        <input type="radio" id="friendliness3" name="friendliness-3" value="{{ i }}">
                         <label for="q3-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -96,7 +96,7 @@
                 <label for="question-1">Are you the master planner of projects, lining up tasks and deadlines with precision?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="conscientiousness1" name="conscientiousness-1" value="{{ i }}" required>
+                        <input type="radio" id="conscientiousness1" name="conscientiousness-1" value="{{ i }}">
                         <label for="q1-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -105,7 +105,7 @@
                 <label for="question-2">Do you take pride in refining your work, striving for excellence in every task you undertake?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="conscientiousness2" name="conscientiousness-2" value="{{ i }}" required>
+                        <input type="radio" id="conscientiousness2" name="conscientiousness-2" value="{{ i }}">
                         <label for="q2-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -114,7 +114,7 @@
                 <label for="question-3">Is your daily life a well-orchestrated symphony, with every activity and commitment neatly arranged?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="conscientiousness3" name="conscientiousness-3" value="{{ i }}" required>
+                        <input type="radio" id="conscientiousness3" name="conscientiousness-3" value="{{ i }}">
                         <label for="q3-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -127,7 +127,7 @@
                 <label for="question-1">Do you leap at opportunities to immerse yourself in different cultures, finding joy in new art, music, and culinary delights?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="openess1" name="openess-1" value="{{ i }}" required>
+                        <input type="radio" id="openess1" name="openess-1" value="{{ i }}">
                         <label for="q1-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -136,7 +136,7 @@
                 <label for="question-2">In discussions, are you keen to explore new ideas, considering different viewpoints as gateways to knowledge?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="openess2" name="openess-2" value="{{ i }}" required>
+                        <input type="radio" id="openess2" name="openess-2" value="{{ i }}">
                         <label for="q2-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>
@@ -145,7 +145,7 @@
                 <label for="question-3">Are you always on the lookout for new and exciting activities, eager to add another adventure to your repertoire?</label>
                 <div class="rating">
                     {% for i in range(1, 6) %}
-                        <input type="radio" id="openess3" name="openess-3" value="{{ i }}" required>
+                        <input type="radio" id="openess3" name="openess-3" value="{{ i }}">
                         <label for="q3-{{ i }}">{{ i }}</label>
                     {% endfor %}
                 </div>

@@ -3,7 +3,7 @@ from routes.user import user_blueprint
 import pymongo
 
 # Initialize the app
-app = Flask(__name__)
+app = Flask(__name__, template_folder='view/templates')
 
 app.register_blueprint(user_blueprint, url_prefix='/user')
 
@@ -18,9 +18,9 @@ users = db['Users']
 # Add a home route
 @app.route('/')
 def home():
-    return render_template('view/templates/home.html')
+    return render_template('home.html')
 
 # Add a dashboard route
 @app.route('/dashboard/')
 def dashboard():
-    return render_template('view/templates/dashboard.html')
+    return render_template('dashboard.html')

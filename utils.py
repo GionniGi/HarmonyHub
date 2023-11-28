@@ -35,9 +35,6 @@ def hash_password(password):
 def check_password(password, hashed):
     return bcrypt.checkpw(password.encode('utf-8'), hashed)
 
-# Retrieves the IP address from the request headers or remote address.    
-def get_ip(request):
-    return request.headers.get('X-Forwarded-For', request.remote_addr)
 
 # Calculates the average of a list of scores and rounds it up.    
 def calculate_average(*scores):

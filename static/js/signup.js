@@ -9,10 +9,14 @@ document.getElementById('signup-form').addEventListener('submit', function (even
 
     fetch('/user/signup/', {
         method: 'POST',
-        body: formData,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(object),
     })
         .then(response => response.json())
         .then(data => {
+            
             if (data.status === "success") {
                 window.location.href = '/login';
             }

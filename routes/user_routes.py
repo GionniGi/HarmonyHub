@@ -14,19 +14,21 @@ def show_signup():
 # Signup user
 def process_signup():
     try:
+        data=request.get_json()
+
         # Get data from request
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
-        confirm_password = request.form['confirm_password']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
-        birth_date = request.form['birth_date']
-        description = request.form['description']
-        ip_address = get_ip(request)
+        username = data['username']
+        email = data['email']
+        password = data['password']
+        confirm_password = data['confirm_password']
+        first_name = data['first_name']
+        last_name = data['last_name']
+        birth_date = data['birth_date']
+        description = data['description']
 
         # Signup user
-        signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, ip_address)
+        signup(username, email, password, confirm_password, first_name, last_name, birth_date, description)
+
         return jsonify({"success": "User created successfully."})
     except ValueError as e:
         return jsonify({"error": str(e)}), 400

@@ -27,7 +27,7 @@ def validate_signup_data(username, email, password, confirm_password):
         raise ValueError("Username must be at least 3 characters long.")
 
 # Signup user
-def signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, extroversion, friendliness, conscientiousness, openness, emotional_stability, ip_address):
+def signup(username, email, password, confirm_password, first_name, last_name, birth_date, description, ip_address):
 
     # Import users collection
     from app import db
@@ -37,7 +37,7 @@ def signup(username, email, password, confirm_password, first_name, last_name, b
     validate_signup_data(username, email, password, confirm_password)
 
     # Create user and insert into database
-    new_user = User(username, email, hash_password(password), first_name, last_name, birth_date, description, extroversion, friendliness, conscientiousness, openness, emotional_stability)
+    new_user = User(username, email, hash_password(password), first_name, last_name, birth_date, description)
     user_object = vars(new_user)
     user_object['ipAddresses'] = [ip_address]
     user_object['lastAccessDate'] = datetime.datetime.utcnow()

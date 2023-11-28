@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, render_template
 from controller.user_controller import signup
 from flask import request
-from utils import get_ip
 
 bp = Blueprint('user', __name__)
 

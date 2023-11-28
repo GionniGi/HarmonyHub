@@ -1,4 +1,3 @@
-import datetime
 from utils import validate_email, validate_password, validate_username, hash_password
 from models.user import User
 

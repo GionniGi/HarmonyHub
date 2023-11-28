@@ -3,7 +3,7 @@ from routes.user_routes import bp
 import pymongo
 
 # Initialize the app
-app = Flask(__name__, static_folder='static', template_folder='view')
+app = Flask(__name__, template_folder='view')
 
 # Register the user blueprint
 app.register_blueprint(bp, url_prefix='/user')

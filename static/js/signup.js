@@ -23,10 +23,20 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
-        window.location.href = '/user/login/';
+        if (data.success) {
+            document.getElementById('feedback-message').innerText = data.success;
+            document.getElementById('feedback-message').style.color = 'green';
+            setTimeout(function() {
+                window.location.href = '/user/login/';
+            }, 1000);
+        } else if (data.error) {
+            document.getElementById('feedback-message').innerText = data.error;
+            document.getElementById('feedback-message').style.color = 'red';
+        }
     })
     .catch((error) => {
         console.error('Error:', error);
+        document.getElementById('feedback-message').innerText = "Errore di comunicazione con il server.";
+        document.getElementById('feedback-message').style.color = 'red';
     });
 });

@@ -33,3 +33,5 @@ def process_signup():
         return jsonify({"error": str(e)}), 400
     except KeyError as e:
         return jsonify({"error": "Missing field: " + str(e)}), 400
+    except Exception as e:
+        return jsonify({"error": "Internal server error."}), 500

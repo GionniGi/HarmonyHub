@@ -41,4 +41,5 @@ def signup(username, email, password, confirm_password, first_name, last_name, b
     user_object = vars(new_user)
     user_object['ipAddresses'] = [ip_address]
     user_object['lastAccessDate'] = datetime.datetime.utcnow()
+    print(user_object)
     users.insert_one(user_object)

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, render_template
 from controller.user_controller import signup, login
 from flask import request
+from flask_jwt_extended import jwt_required
 
 bp = Blueprint('user', __name__)
 
@@ -33,8 +34,6 @@ def process_signup():
         return jsonify({"error": str(e)}), 400
     except KeyError:
         return jsonify({"error": "Invalid request."}), 400
-    except Exception:
-        return jsonify({"error": "An error occurred."}), 500
     
 @bp.route('/login/', methods=['GET'])
 # Show login page
@@ -56,5 +55,8 @@ def process_login():
         return jsonify({"error": str(e)}), 400
     except KeyError:
         return jsonify({"error": "Invalid request."}), 400
-    except Exception:
-        return jsonify({"error": "An error occurred."}), 500
+
+@bp.route('/logout/', methods=['POST'])
+@jwt_required
+# Logout user
+def logout():

@@ -1,5 +1,5 @@
 from utils import validate_email, validate_password, validate_username, hash_password, check_password
-from flask_jwt_extended import create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies
+from flask_jwt_extended import create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
 from flask import url_for, jsonify
 
 
@@ -90,3 +90,6 @@ def login(username_email, password):
     set_refresh_cookies(response, refresh_token)
 
     return response
+
+# Logout user
+def logout()

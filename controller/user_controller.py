@@ -1,5 +1,5 @@
 from utils import validate_email, validate_password, validate_username, hash_password, check_password
-from flask_jwt_extended import create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
+from flask_jwt_extended import create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, get_jwt_identity
 from flask import url_for, jsonify
 
 
@@ -7,8 +7,7 @@ from flask import url_for, jsonify
 def validate_signup_data(username, email, password, confirm_password):
 
     # Import users collection
-    from app import db
-    users = db['Users']
+    from app import users 
 
     # Check if username or email already exists
     if users.find_one({'username': username}):
@@ -32,8 +31,7 @@ def validate_signup_data(username, email, password, confirm_password):
 def signup(username, email, password, confirm_password, first_name, last_name, birth_date, description):
 
     # Import users collection
-    from app import db
-    users = db['Users']
+    from app import users 
 
     # Validate data
     validate_signup_data(username, email, password, confirm_password)
@@ -54,12 +52,12 @@ def signup(username, email, password, confirm_password, first_name, last_name, b
 def validate_login_data(username_email, password):
 
     # Import users collection
-    from app import db
-    users = db['Users']
+    from app import users 
+
+    # Check if user exists
     user_exists = users.find_one({'$or': [{'username': username_email}, {'email': username_email}]})
     error_message = 'Username or Password is incorrect.'
 
-    # Check if user exists
     if user_exists is None:
         raise ValueError(error_message)
     
@@ -71,8 +69,9 @@ def validate_login_data(username_email, password):
 def login(username_email, password):
 
     # Import users collection
-    from app import db
-    users = db['Users']
+    from app import users 
+
+    # Get user id
     user_id = users.find_one({'$or': [{'username': username_email}, {'email': username_email}]}).get('_id')
 
     # Validate data
@@ -100,3 +99,15 @@ def logout():
     # Unset cookies
     unset_jwt_cookies(response)
     return response
+
+# Refresh access token
+def refresh():
+
+    from app import users 
+
+    user_id = get_jwt_identity()
+    user = users.find_one({'_id': user_id})
+    access_token = create_access_token(identity=user.user_id)
+
+    response = jsonify()
+    set_access_cookies(response, access_token)

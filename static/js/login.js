@@ -9,7 +9,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     fetch('/user/login/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({ usernameEmail: username_email, password: password })
     })

@@ -1,8 +1,8 @@
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, render_template, request
 from controller.user_controller import signup, login, logout
-from flask import request
-from flask_jwt_extended import jwt_required, jwt_refresh_token_required
+from flask_jwt_extended import jwt_required
 
+# Create a blueprint
 bp = Blueprint('user', __name__)
 
 @bp.route('/signup/', methods=['GET'])
@@ -61,8 +61,3 @@ def process_login():
 # Logout user
 def process_logout():
     return logout(), 200
-
-@bp.route('/refresh', methods=('POST',))
-@jwt_refresh_token_required
-def refresh():
-    

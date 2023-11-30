@@ -9,7 +9,9 @@ app = Flask(__name__, template_folder='view')
 # Configure jwt
 jwt = JWTManager(app)
 app.config['JWT_SECRET_KEY'] = 'secret'
+app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 app.config['JWT_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
+app.config['JWT_COOKIE_SECURE'] = False
 
 # Register the user blueprint
 app.register_blueprint(bp, url_prefix='/user')

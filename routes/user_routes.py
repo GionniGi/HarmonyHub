@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template
-from controller.user_controller import signup, login
+from controller.user_controller import signup, login, logout
 from flask import request
 from flask_jwt_extended import jwt_required
 
@@ -59,4 +59,5 @@ def process_login():
 @bp.route('/logout/', methods=['POST'])
 @jwt_required
 # Logout user
-def logout():
+def process_logout():
+    return logout(), 200

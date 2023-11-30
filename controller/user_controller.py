@@ -92,4 +92,11 @@ def login(username_email, password):
     return response
 
 # Logout user
-def logout()
+def logout():
+
+    # Return success message
+    response = jsonify({"success": "User logged out successfully."})
+
+    # Unset cookies
+    unset_jwt_cookies(response)
+    return response

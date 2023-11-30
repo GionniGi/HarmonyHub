@@ -1,7 +1,7 @@
 document.getElementById('signup-form').addEventListener('submit', function(event){
     event.preventDefault();
 
-    // Raccogliere i dati dal form
+    // Getting signup data
     var userData = {
         username: document.getElementById('username').value,
         email: document.getElementById('email').value,
@@ -13,7 +13,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         description: document.getElementById('description').value,
     };
 
-    // Invio dei dati al server tramite una richiesta POST
+    // Sending signup data
     fetch('/user/signup/', {
         method: 'POST',
         headers: {

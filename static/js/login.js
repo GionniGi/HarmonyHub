@@ -1,25 +1,34 @@
 document.getElementById('login-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    var usernameEmail = document.getElementById('username_email').value;
+    // Getting login data
+    var username_email = document.getElementById('username_email').value;
     var password = document.getElementById('password').value;
 
-    fetch('/login/', {
+    // Sending login data
+    fetch('/user/login/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ usernameEmail: usernameEmail, password: password })
+        body: JSON.stringify({ usernameEmail: username_email, password: password })
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error('Network response was not ok.');
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
-        // Gestire qui la risposta positiva, come il reindirizzamento alla dashboard
+        if (data.success) {
+            rdocument.getElementById('feedback-message').innerText = data.success;
+            document.getElementById('feedback-message').style.color = 'green';
+            setTimeout(function() {
+                window.location.href = '/dashboard/';
+            }, 1000);
+        } else if (data.error) {
+            document.getElementById('feedback-message').innerText = data.error;
+            document.getElementById('feedback-message').style.color = 'red';
+        }
     })
-    .catch(error => console.error('Error:', error));
+    .catch((error) => {
+        console.error('Error:', error);
+        document.getElementById('feedback-message').innerText = "Errore di comunicazione con il server.";
+        document.getElementById('feedback-message').style.color = 'red';
+    });
 });

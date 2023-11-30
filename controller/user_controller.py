@@ -105,9 +105,9 @@ def refresh():
 
     from app import users 
 
-    user_id = get_jwt_identity()
-    user = users.find_one({'_id': user_id})
-    access_token = create_access_token(identity=user.user_id)
+    user_id1 = get_jwt_identity()
+    user_id2 = users.find_one({'_id': user_id1}).get('_id')
+    access_token = create_access_token(identity=user_id2)
 
     response = jsonify()
     set_access_cookies(response, access_token)

@@ -1,6 +1,6 @@
-from utils import validate_email, validate_password, validate_username, hash_password
-from models.user import User
-from flask import url_for
+from utils import validate_email, validate_password, validate_username, hash_password, check_password
+from flask_jwt_extended import create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies
+from flask import url_for, jsonify
 
 
 # Validate signup data
@@ -14,7 +14,9 @@ def validate_signup_data(username, email, password, confirm_password):
     if users.find_one({'username': username}):
         raise ValueError("Username already taken.")
     if users.find_one({'email': email}):
-        raise ValueError("Email already taken.")
+        login_url = url_for('/user/login/')
+        error_message = f'Email already taken. Please login at <a href="{login_url}">this page</a>.'
+        raise ValueError(error_message)
 
     # Check if all fields are filled
     if password != confirm_password:
@@ -36,9 +38,16 @@ def signup(username, email, password, confirm_password, first_name, last_name, b
     # Validate data
     validate_signup_data(username, email, password, confirm_password)
 
-    # Create user and insert into database
-    new_user = User(username, email, hash_password(password), first_name, last_name, birth_date, description)
-    user_object = new_user.__dict__
+    # Create user object and insert into database
+    user_object = {
+        'username': username,
+        'email': email,
+        'password': hash_password(password),
+        'first_name': first_name,
+        'last_name': last_name,
+        'birth_date': birth_date,
+        'description': description
+    }
     users.insert_one(user_object)
 
 # Validate login data
@@ -47,11 +56,37 @@ def validate_login_data(username_email, password):
     # Import users collection
     from app import db
     users = db['Users']
+    user_exists = users.find_one({'$or': [{'username': username_email}, {'email': username_email}]})
+    error_message = 'Username or Password is incorrect.'
 
     # Check if user exists
-    if not users.find_one({$or: [{'username': username_email}, {'email': username_email}]}):
-        signup_url = url_for('/user/signup/')
-        error_message = f'User does not exist. Please register at <a href="{signup_url}">this page</a>.'
+    if user_exists is None:
+        raise ValueError(error_message)
+    
+    # Check if password is correct
+    if not check_password(password, user_exists.get('password')):
         raise ValueError(error_message)
 
-    
+# Login user
+def login(username_email, password):
+
+    # Import users collection
+    from app import db
+    users = db['Users']
+    user_id = users.find_one({'$or': [{'username': username_email}, {'email': username_email}]}).get('_id')
+
+    # Validate data
+    validate_login_data(username_email, password)
+
+    # Create access and refresh tokens
+    access_token = create_access_token(identity=user_id)
+    refresh_token = create_refresh_token(identity=user_id)
+
+    # Return success message
+    response = jsonify({"success": "User logged in successfully."})
+
+    # Set cookies
+    set_access_cookies(response, access_token)
+    set_refresh_cookies(response, refresh_token)
+
+    return response

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template
-from controller.user_controller import signup
+from controller.user_controller import signup, login
 from flask import request
 
 bp = Blueprint('user', __name__)
@@ -28,11 +28,33 @@ def process_signup():
         # Signup user
         signup(username, email, password, confirm_password, first_name, last_name, birth_date, description)
 
-        return jsonify({"success": "User created successfully."})
+        return jsonify({"success": "User created successfully."}), 200
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
+    except KeyError:
+        return jsonify({"error": "Invalid request."}), 400
+    except Exception:
+        return jsonify({"error": "An error occurred."}), 500
     
 @bp.route('/login/', methods=['GET'])
 # Show login page
 def show_login():
     return render_template('login/login.html')
+
+@bp.route('/login/', methods=['POST'])
+# Login user
+def process_login():
+    try:
+        data=request.get_json()
+
+        # Get data from request
+        username_email = data['username_email']
+        password = data['password']
+
+        return login(username_email, password), 200
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+    except KeyError:
+        return jsonify({"error": "Invalid request."}), 400
+    except Exception:
+        return jsonify({"error": "An error occurred."}), 500

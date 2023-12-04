@@ -13,7 +13,7 @@ def validate_signup_data(username, email, password, confirm_password):
     if users.find_one({'username': username}):
         raise ValueError("Username already taken.")
     if users.find_one({'email': email}):
-        login_url = url_for('/user/login/')
+        login_url = url_for('http://127.0.0.1:5000/user/login/')
         error_message = f'Email already taken. Please login at <a href="{login_url}">this page</a>.'
         raise ValueError(error_message)
 

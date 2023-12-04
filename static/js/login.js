@@ -1,9 +1,11 @@
-document.getElementById('login-form').addEventListener('submit', function(event) {
+document.getElementById('login-form').addEventListener('submit', function(event){
     event.preventDefault();
 
     // Getting login data
-    var username_email = document.getElementById('username_email').value;
-    var password = document.getElementById('password').value;
+    var userData = {
+        username_email: document.getElementById('username_email').value,
+        password: document.getElementById('password').value,
+    };
 
     // Sending login data
     fetch('/user/login/', {
@@ -11,12 +13,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ usernameEmail: username_email, password: password })
+        body: JSON.stringify(userData),
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            rdocument.getElementById('feedback-message').innerText = data.success;
+            document.getElementById('feedback-message').innerText = data.success;
             document.getElementById('feedback-message').style.color = 'green';
             setTimeout(function() {
                 window.location.href = '/dashboard/';

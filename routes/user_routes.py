@@ -50,7 +50,10 @@ def process_login():
         username_email = data['username_email']
         password = data['password']
 
-        return login(username_email, password), 200
+        # Login user
+        login(username_email, password)
+
+        return jsonify({"success": "User logged successfully."}), 200
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     except KeyError:

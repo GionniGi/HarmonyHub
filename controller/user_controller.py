@@ -71,11 +71,11 @@ def login(username_email, password):
     # Import users collection
     from app import users 
 
-    # Get user id
-    user_id = users.find_one({'$or': [{'username': username_email}, {'email': username_email}]}).get('_id')
-
     # Validate data
     validate_login_data(username_email, password)
+
+    # Get user id
+    user_id = users.find_one({'$or': [{'username': username_email}, {'email': username_email}]}).get('_id')
 
     # Create access and refresh tokens
     access_token = create_access_token(identity=user_id)
